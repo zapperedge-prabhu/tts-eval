@@ -1,0 +1,14 @@
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+python-dotenv==1.0.1
+numpy>=1.23,<2.0
+transformers>=4.40.0,<5.0
+torch>=2.2.0,<3.0
+# The TTS library provides the Coqui models; this fork supersedes the
+# older `coqui-ai/TTS`.  We choose a recent version known to work
+# with Python 3.11+.
+TTS>=0.27.0,<0.28
+# ElevenLabs official SDK for hosted TTS
+elevenlabs>=2.24.0,<3.0
+# Kokoro open-weight TTS model
+kokoro>=0.9.4,<0.10
