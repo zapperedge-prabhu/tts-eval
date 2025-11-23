@@ -22,7 +22,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 import logging
 
-from .tts_providers import get_provider
+from tts_providers import get_provider
 
 
 logging.basicConfig(
