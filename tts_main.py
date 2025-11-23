@@ -129,10 +129,13 @@ async def tts_bark(req: Request) -> JSONResponse:
     if not text:
         raise HTTPException(status_code=400, detail="Missing 'text' in request body")
     voice_preset = data.get("voice_preset")
-    provider = get_provider("bark")
     start = time.time()
     try:
+        provider = get_provider("bark")
         audio, sample_rate = provider.synthesize(text, voice_preset=voice_preset)
+    except ValueError as exc:
+        logger.warning("Bark provider unavailable: %s", exc)
+        raise HTTPException(status_code=503, detail=f"Bark provider is not available: {exc}")
     except Exception as exc:
         logger.exception("Bark synthesis failed: %s", exc)
         raise HTTPException(status_code=500, detail=f"Bark synthesis failed: {exc}")
@@ -154,10 +157,13 @@ async def tts_coqui(req: Request) -> JSONResponse:
     text = data.get("text")
     if not text:
         raise HTTPException(status_code=400, detail="Missing 'text' in request body")
-    provider = get_provider("coqui")
     start = time.time()
     try:
+        provider = get_provider("coqui")
         audio, sample_rate = provider.synthesize(text)
+    except ValueError as exc:
+        logger.warning("Coqui provider unavailable: %s", exc)
+        raise HTTPException(status_code=503, detail=f"Coqui provider is not available: {exc}")
     except Exception as exc:
         logger.exception("Coqui synthesis failed: %s", exc)
         raise HTTPException(status_code=500, detail=f"Coqui synthesis failed: {exc}")
@@ -181,11 +187,13 @@ async def tts_elevenlabs(req: Request) -> JSONResponse:
         raise HTTPException(status_code=400, detail="Missing 'text' in request body")
     voice_id = data.get("voice_id")
     model_id = data.get("model_id")
-    provider = get_provider("elevenlabs")
-    # If the provider was initialised without an API key, this call will fail
     start = time.time()
     try:
+        provider = get_provider("elevenlabs")
         audio_bytes, sample_rate = provider.synthesize(text, voice_id=voice_id, model_id=model_id)
+    except ValueError as exc:
+        logger.warning("ElevenLabs provider unavailable: %s", exc)
+        raise HTTPException(status_code=503, detail=f"ElevenLabs provider is not available: {exc}")
     except Exception as exc:
         logger.exception("ElevenLabs synthesis failed: %s", exc)
         raise HTTPException(status_code=500, detail=f"ElevenLabs synthesis failed: {exc}")
@@ -207,13 +215,15 @@ async def tts_kokoro(req: Request) -> JSONResponse:
     text = data.get("text")
     if not text:
         raise HTTPException(status_code=400, detail="Missing 'text' in request body")
-    # Optional overrides for language and voice
     voice = data.get("voice")
     lang_code = data.get("lang_code")
-    provider = get_provider("kokoro")
     start = time.time()
     try:
+        provider = get_provider("kokoro")
         audio, sample_rate = provider.synthesize(text, voice=voice, lang_code=lang_code)
+    except ValueError as exc:
+        logger.warning("Kokoro provider unavailable: %s", exc)
+        raise HTTPException(status_code=503, detail=f"Kokoro provider is not available: {exc}")
     except Exception as exc:
         logger.exception("Kokoro synthesis failed: %s", exc)
         raise HTTPException(status_code=500, detail=f"Kokoro synthesis failed: {exc}")

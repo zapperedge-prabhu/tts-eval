@@ -52,7 +52,10 @@ ZapperTTSService is a FastAPI-based text-to-speech microservice that provides RE
 ## Environment Variables
 
 ### Currently Configured (Shared Environment)
-- `API_KEY_ELEVENLABS` - API key for authenticating requests to the ElevenLabs endpoint
+- `API_KEY_BARK` - API key for authenticating requests to the Bark endpoint (dev key: dev-bark-key)
+- `API_KEY_COQUI` - API key for authenticating requests to the Coqui endpoint (dev key: dev-coqui-key)
+- `API_KEY_ELEVENLABS` - API key for authenticating requests to the ElevenLabs endpoint (dev key: dev-elevenlabs-key-placeholder)
+- `API_KEY_KOKORO` - API key for authenticating requests to the Kokoro endpoint (dev key: dev-kokoro-key)
 - `ELEVENLABS_VOICE_ID` - Default voice ID for ElevenLabs
 - `ELEVENLABS_MODEL_ID` - Default model ID for ElevenLabs
 - `ELEVENLABS_SAMPLE_RATE` - Sample rate for audio output

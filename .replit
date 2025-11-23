@@ -12,6 +12,9 @@ API_KEY_ELEVENLABS = "dev-elevenlabs-key-placeholder"
 ELEVENLABS_VOICE_ID = "JBFqnCBsd6RMkjVDRZzb"
 ELEVENLABS_MODEL_ID = "eleven_flash_v2_5"
 ELEVENLABS_SAMPLE_RATE = "24000"
+API_KEY_BARK = "dev-bark-key"
+API_KEY_COQUI = "dev-coqui-key"
+API_KEY_KOKORO = "dev-kokoro-key"
 
 [workflows]
 runButton = "Project"
@@ -42,9 +45,5 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 33615
+localPort = 37929
 externalPort = 3000
-
-[deployment]
-deploymentTarget = "autoscale"
-run = ["uvicorn", "tts_main:app", "--host", "0.0.0.0", "--port", "5000"]
