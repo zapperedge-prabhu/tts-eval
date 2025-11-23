@@ -5,10 +5,11 @@ numpy>=1.23,<2.0
 # ElevenLabs official SDK for hosted TTS (lightweight, no local models needed)
 elevenlabs>=2.24.0,<3.0
 
-# Optional heavy dependencies for local TTS providers (commented out by default due to disk space)
+# Optional heavy dependencies for local TTS providers
 # Install these only if you have sufficient storage (Core plan or higher)
-# transformers>=4.40.0,<5.0
-# torch>=2.2.0,<3.0
+transformers>=4.40.0,<5.0
+torch>=2.2.0,<3.0
 # TTS>=0.22.0
 # kokoro-onnx>=0.1.0
-# scipy
+scipy
+transformers

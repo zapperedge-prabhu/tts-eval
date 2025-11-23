@@ -24,12 +24,13 @@ ZapperTTSService is a FastAPI-based text-to-speech microservice that provides RE
 
 ## Recent Changes (Replit Adaptation)
 
-### 2025-11-23: Initial Replit Setup
+### 2025-11-23: Updated Dependencies
 
 1. **Dependency Management**
-   - Reduced dependencies to lightweight packages only (FastAPI, uvicorn, numpy, elevenlabs)
-   - Heavy ML models (transformers, torch, TTS, kokoro) commented out due to Replit disk space constraints
-   - Only ElevenLabs provider is currently available (doesn't require local models)
+   - Enabled transformers and torch for Bark provider support
+   - Note: These are large dependencies (~1.3GB combined) - only install on Core plan or higher
+   - scipy added for audio processing support
+   - ElevenLabs provider available (API-based, no local models)
 
 2. **Import Structure**
    - Fixed relative imports in `tts_main.py` to work outside package context
